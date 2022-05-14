@@ -1,0 +1,17 @@
+import os
+from optimize import patch_stamp
+from parse import parse_image
+from PIL import Image
+
+def load_images():
+  """
+  Load images from disk
+  """
+  for fn in os.listdir("images"):
+    image = Image.open(f"images/{fn}")
+    patch_stamp(image)
+    parse_image(image)
+    break
+
+if __name__ == "__main__":
+  load_images()
