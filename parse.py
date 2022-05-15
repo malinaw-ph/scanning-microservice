@@ -1,3 +1,4 @@
+from display import display_image
 import pytesseract
 from pytesseract import Output
 from PIL import ImageDraw, Image
@@ -28,16 +29,5 @@ def parse_image(image):
     draw.rectangle((x1, y1, x2, y2), outline="red")
 
   display_image(image)
-  # print(text)
-
-def display_image(image):
-  """
-  Resize image to fit in display
-  """
-  display_height = 1080
-  new_height = display_height * 9 // 10
-  width, height = image.size
-  new_width = new_height * width // height
-  display = image.resize((new_width, new_height), Image.ANTIALIAS)
-
-  display.show()
+  text = pytesseract.image_to_string(image)
+  return text
